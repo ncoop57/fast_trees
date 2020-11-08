@@ -1,3 +1,5 @@
+tree-sitter-*
+
 *.bak
 .gitattributes
 .last_checked
