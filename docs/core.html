@@ -38,54 +38,55 @@ nb_path: "nbs/00_core.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">FastParser</span><span class="p">:</span>
-    <span class="n">LANG_URLs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;java&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;https://github.com/tree-sitter/tree-sitter-java&#39;</span><span class="p">,</span> <span class="s1">&#39;tree-sitter-java&#39;</span><span class="p">]}</span>
+</div>
+    {% endraw %}
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lang</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">build_parser</span><span class="p">(</span><span class="n">lang</span><span class="p">)</span>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
-    <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mthd</span><span class="p">):</span>
-        <span class="n">tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">mthd</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">))</span>
-        <span class="n">query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">language</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">            (formal_parameter</span>
-<span class="s2">            name: (identifier) @function.method)</span>
-<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
-        <span class="n">captures</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">captures</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">root_node</span><span class="p">)</span>
-        <span class="n">params</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">captures</span><span class="p">:</span>
-            <span class="n">params</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mthd</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">start_point</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">node</span><span class="o">.</span><span class="n">end_point</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
-        
-        <span class="k">return</span> <span class="n">params</span>
+<div class="output_wrapper">
+<div class="output">
 
-    <span class="k">def</span> <span class="nf">build_parser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lang</span><span class="p">):</span>
-        <span class="n">url</span><span class="p">,</span> <span class="n">folder</span> <span class="o">=</span> <span class="n">FastParser</span><span class="o">.</span><span class="n">LANG_URLs</span><span class="p">[</span><span class="n">lang</span><span class="p">]</span>
-        <span class="n">repo_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">fast_trees</span><span class="o">.</span><span class="n">__path__</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">folder</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">repo_dir</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Repo already exists, continuing.&#39;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Downloading repo </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1"> to </span><span class="si">{</span><span class="n">repo_dir</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
-            <span class="n">Repo</span><span class="o">.</span><span class="n">clone_from</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">repo_dir</span><span class="p">)</span>
-        
-        <span class="n">build_dir</span> <span class="o">=</span> <span class="n">fast_trees</span><span class="o">.</span><span class="n">__path__</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="s1">&#39;build/my-languages.so&#39;</span>
-        <span class="n">Language</span><span class="o">.</span><span class="n">build_library</span><span class="p">(</span>
-            <span class="c1"># Store the library in the `build` directory</span>
-            <span class="n">build_dir</span><span class="p">,</span>
+<div class="output_area">
 
-            <span class="c1"># Include one or more languages</span>
-            <span class="p">[</span>
-                <span class="n">repo_dir</span>
-            <span class="p">]</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">language</span> <span class="o">=</span> <span class="n">Language</span><span class="p">(</span><span class="n">build_dir</span><span class="p">,</span> <span class="n">lang</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">Parser</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">set_language</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">language</span><span class="p">)</span>
-</pre></div>
 
-    </div>
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="FastParser" class="doc_header"><code>class</code> <code>FastParser</code><a href="https://github.com/ncoop57/fast_trees/tree/main/fast_trees/core.py#L14" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>FastParser</code>(<strong><code>lang</code></strong>:<code>str</code>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="FastParser.get_params" class="doc_header"><code>FastParser.get_params</code><a href="https://github.com/ncoop57/fast_trees/tree/main/fast_trees/core.py#L20" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>FastParser.get_params</code>(<strong><code>mthd</code></strong>:<code>str</code>)</p>
+</blockquote>
+<p>Returns the parameters of a given method</p>
+<p>:param mthd: the method to get the parameters from
+:returns: the parameters of the given method as an array</p>
+
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -117,7 +118,7 @@ nb_path: "nbs/00_core.ipynb"
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Downloading repo https://github.com/tree-sitter/tree-sitter-java to /home/nathan/projects/other/fast_trees/fast_trees/tree-sitter-java.
+<pre>Repo already exists, continuing.
 </pre>
 </div>
 </div>
