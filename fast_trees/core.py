@@ -31,8 +31,12 @@ class FastParser:
         """)
         captures = query.captures(tree.root_node)
         params = []
+        lines = mthd.split('\n')
         for node, _ in captures:
-            params.append(mthd[node.start_point[1]:node.end_point[1]])
+            params.append(
+                lines[node.start_point[0]][node.start_point[1]:node.end_point[1]]
+                # mthd[node.start_point[1]:node.end_point[1]]
+            )
 
         return params
 

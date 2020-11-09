@@ -4,7 +4,7 @@
 
 ## Install
 
-`pip install fast_trees`
+`pip install fast-trees`
 
 ## How to use
 
@@ -34,4 +34,5 @@ parser.get_params(mthd)
 - [x] Add ability to grab method parameters
 - [ ] Add separation between parsing methods vs classes
 - [ ] Add ability to get all methods in a class
+- [ ] add ability to get all instance variables in a class
 - [ ] Add more languages
