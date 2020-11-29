@@ -80,8 +80,10 @@ class JavaParser(BaseParser):
                     ]
                 )
             else:
-                start_line = lines[node.start_point[0]][node.start_point[1]:]
-                middle_lines = "\n".join(lines[node.start_point[0] + 1: node.end_point[0]])
+                start_line = lines[node.start_point[0]][node.start_point[1] :]
+                middle_lines = "\n".join(
+                    lines[node.start_point[0] + 1 : node.end_point[0]]
+                )
                 end_line = lines[node.end_point[0]][: node.end_point[1]]
                 comments.append("\n".join([start_line, middle_lines, end_line]))
 

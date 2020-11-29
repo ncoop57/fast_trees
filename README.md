@@ -19,11 +19,11 @@ mthd = """public static void main(String[] args, Object clazz) {
     */
 }
 """
-parser = FastParser('java')
+parser = FastParser("java")
 print(parser.get_method_parameters(mthd))
 ```
 
-    Downloading repo https://github.com/tree-sitter/tree-sitter-java to /home/nathan/projects/other/fast_trees/fast_trees/tree-sitter-java.
+    Repo already exists, continuing.
     ['args', 'clazz']
 
 
