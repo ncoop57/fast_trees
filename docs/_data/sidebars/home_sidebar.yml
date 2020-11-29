@@ -12,6 +12,9 @@ entries:
     - output: web,pdf
       title: Core
       url: /core
+    - output: web,pdf
+      title: Queries
+      url: /queries
     output: web
     title: fast_trees
   output: web

@@ -10,20 +10,33 @@
 
 Easily work with source code data by using the high level API. Here's how you can grab the parameters of a java method:
 
-```
+```python
 mthd = """public static void main(String[] args, Object clazz) {
+    // This is a test
     System.out.println(args[0]);
+    /**
+        This is another test!
+    */
 }
 """
 parser = FastParser('java')
-parser.get_params(mthd)
+print(parser.get_method_parameters(mthd))
 ```
 
+    Downloading repo https://github.com/tree-sitter/tree-sitter-java to /home/nathan/projects/other/fast_trees/fast_trees/tree-sitter-java.
+    ['args', 'clazz']
 
 
+```python
+inline_comments = parser.get_method_inline_comments(mthd)
+for c in inline_comments:
+    print(c)
+```
 
-    2
-
+    // This is a test
+    /**
+            This is another test!
+        */
 
 
 # Supported Languages

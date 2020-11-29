@@ -2,9 +2,13 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"FastParser": "00_core.ipynb"}
+index = {"BaseParser": "00_core.ipynb",
+         "JavaParser": "00_core.ipynb",
+         "FastParser": "00_core.ipynb",
+         "JavaQueries": "01_queries.ipynb"}
 
-modules = ["core.py"]
+modules = ["core.py",
+           "queries.py"]
 
 doc_url = "https://ncoop57.github.io/fast_trees/"
 

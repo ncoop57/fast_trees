@@ -1,6 +1,7 @@
 {
   "fast_trees": {
     "Overview": "/",
-    "Core": "/core"
+    "Core": "/core",
+    "Queries": "/queries"
   }
 }
