@@ -254,6 +254,40 @@ nb_path: "nbs/00_core.ipynb"
 </div>
     {% endraw %}
 
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mthd</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;public DependencyCustomizer ifAllMissingClasses(String... classNames) {</span>
+<span class="s2">		return new DependencyCustomizer(this) {</span>
+<span class="s2">			@Override</span>
+<span class="s2">			protected boolean canAdd() {</span>
+<span class="s2">				for (String className : classNames) {</span>
+<span class="s2">					try {</span>
+<span class="s2">						DependencyCustomizer.this.loader.loadClass(className);</span>
+<span class="s2">						return false;</span>
+<span class="s2">					}</span>
+<span class="s2">					catch (Exception ex) {</span>
+<span class="s2">						// swallow exception and continue</span>
+<span class="s2">					}</span>
+<span class="s2">				}</span>
+<span class="s2">				return DependencyCustomizer.this.canAdd();</span>
+<span class="s2">			}</span>
+<span class="s2">		};</span>
+<span class="s2">	}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
 </div>
  
 

@@ -4,6 +4,10 @@
 
 ## Install
 
+`fast-trees` requires git to be installed on your system for downloading the different `tree-sitter` languages. So, make sure it is installed before using `fast-trees`. See [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) for instruction on installing git.
+
+To install `fast-trees`, simply run:
+
 `pip install fast-trees`
 
 ## How to use
@@ -23,9 +27,11 @@ parser = FastParser("java")
 print(parser.get_method_parameters(mthd))
 ```
 
-    Repo already exists, continuing.
+    Downloading repo https://github.com/tree-sitter/tree-sitter-java to /home/nathan/projects/other/fast_trees/fast_trees/tree-sitter-java.
     ['args', 'clazz']
 
+
+And here is how you can grab all of the inline comments:
 
 ```python
 inline_comments = parser.get_method_inline_comments(mthd)
